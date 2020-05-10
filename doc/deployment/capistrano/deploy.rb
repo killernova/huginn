@@ -5,12 +5,12 @@
 default_run_options[:pty] = true
 
 set :application, "huginn"
-set :deploy_to, "/home/you/app"
-set :user, "you"
+set :deploy_to, "/var/www/huginn"
+set :user, "root"
 set :use_sudo, false
 set :scm, :git
 set :rails_env, 'production'
-set :repository, "git@github.com:you/huginn-private.git"
+set :repository, "git@github.com:killernova/huginn.git"
 set :branch, ENV['BRANCH'] || "master"
 set :deploy_via, :remote_cache
 set :keep_releases, 5
@@ -19,7 +19,7 @@ puts "    Deploying #{branch}"
 
 set :bundle_without, [:development]
 
-server "yourdomain.com", :app, :web, :db, :primary => true
+server "34.85.6.127", :app, :web, :db, :primary => true
 
 set :sync_backups, 3
 

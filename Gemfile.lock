@@ -99,7 +99,7 @@ PATH
       dotenv (= 2.0.1)
 
 GEM
-  remote: https://rubygems.org/
+  remote: https://gems.ruby-china.com/
   specs:
     ace-rails-ap (2.0.1)
     actioncable (5.2.2.1)
