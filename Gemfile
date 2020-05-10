@@ -143,6 +143,7 @@ group :development do
   gem 'capistrano', '~> 3.11.0'
   gem 'capistrano-rails', '~> 1.1'
   gem 'capistrano-bundler', '~> 1.1.4'
+  gem 'capistrano-rvm'
 
   if_true(ENV['SPRING']) do
     gem 'spring-commands-rspec', '~> 1.0.4'
