@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+# source 'https://gems.ruby-china.com'
 
 # ruby '>=2.4.0'
 
@@ -144,6 +145,7 @@ group :development do
   gem 'capistrano-rails', '~> 1.1'
   gem 'capistrano-bundler', '~> 1.1.4'
   gem 'capistrano-rvm'
+  gem 'capistrano3-unicorn'
 
   if_true(ENV['SPRING']) do
     gem 'spring-commands-rspec', '~> 1.0.4'

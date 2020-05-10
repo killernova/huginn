@@ -15,8 +15,10 @@ set :deploy_to, '/var/www/huginn'
 # Set to :debug for verbose ouput
 set :log_level, :info
 
+set :unicorn_config_path, "#{deploy_to}/current/config/unicorn.rb"
+
 # Default value for :linked_files is []
-set :linked_files, fetch(:linked_files, []).push('.env', 'Procfile', 'config/unicorn.rb')
+set :linked_files, fetch(:linked_files, []).push('.env', 'Procfile', 'config/unicorn.rb', 'config/unicorn/production.rb')
 
 # Default value for linked_dirs is []
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle')
@@ -30,8 +32,13 @@ set :conditionally_migrate, true # Defaults to false. If true, it's skip migrati
 
 task :deploy => [:production]
 
+after 'deploy:publishing', 'deploy:restart'
+
 namespace :deploy do
   after 'check:make_linked_dirs', :migrate_to_cap do
+    task :restart do
+      invoke 'unicorn:restart'
+    end
     on roles(:all) do
       # Try to migrate from the manual installation to capistrano directory structure
       next if test('[ -L ~/huginn ]')

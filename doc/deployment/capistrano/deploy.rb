@@ -14,6 +14,7 @@ set :repository, "git@github.com:killernova/huginn.git"
 set :branch, ENV['BRANCH'] || "master"
 set :deploy_via, :remote_cache
 set :keep_releases, 5
+set :unicorn_config_path, "#{deploy_to}/config/unicorn.rb"
 
 puts "    Deploying #{branch}"
 
