@@ -5,12 +5,12 @@ Dotenv.load
 lock '3.11.0'
 
 set :application, 'huginn'
-set :repo_url, ENV['CAPISTRANO_DEPLOY_REPO_URL'] || 'https://github.com/huginn/huginn.git'
+set :repo_url, ENV['CAPISTRANO_DEPLOY_REPO_URL'] || 'git@github.com:killernova/huginn.git'
 
 # Default branch is :master
 set :branch, ENV['CAPISTRANO_DEPLOY_BRANCH'] || ENV['BRANCH'] || 'master'
 
-set :deploy_to, '/home/huginn'
+set :deploy_to, '/var/www/huginn'
 
 # Set to :debug for verbose ouput
 set :log_level, :info
@@ -40,6 +40,7 @@ namespace :deploy do
           execute("cp ~/huginn/#{f} ~/shared/#{f}")
         end
       end
+      puts "============= start to mv strange file ============="
       execute('mv ~/huginn ~/huginn.manual')
       execute('ln -s ~/current ~/huginn')
     end
